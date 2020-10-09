@@ -1,0 +1,20 @@
+<!-- Con este extend hacemos que el contenido de este html vaya donde este definida la secuencia -->
+<!-- block nombreEspecificado en el archivo referido (en este caso base.html) -->
+{% extends "base.html" %}
+
+<!-- Definimos el conteido de block title que es extendido de base.html -->
+{% block title %} Home {% endblock %}
+
+<!-- Definimos el conteido de block content que es extendido de base.html -->
+{% block content %}
+
+    <!-- Podemos acceder a las variables que nos llegan de python con {{ variableName }} -->
+    <h1>Welcome!</h1>
+
+    <!-- Con este formulario trataremos de listar los usuarios registrados -->
+    <form method="get" action="{{ url_for('search') }}">
+        <p>Usuario: <input type="text" name="nickname"></p>
+        <input type="submit" value="Search">
+    </form>
+
+{% endblock %}

@@ -1,0 +1,26 @@
+
+.pelicula_card_overview{
+    height: 150px;
+    overflow: hidden;
+}
+
+.card img{
+    height: 400px;
+    background-size: cover;
+}
+
+
+.tarjeta_pelicula{
+    filter: grayscale(100%);
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.tarjeta_pelicula:hover{
+    filter: grayscale(0%);
+}
+
+.card-title{
+    color: rgb(0, 123, 255);
+    font-weight: bold;
+}

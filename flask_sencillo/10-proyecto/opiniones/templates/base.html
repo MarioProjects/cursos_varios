@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <!-- Creamos un bloque que rellene quien extienda de nostros para que pueda poner cada vez un titulo diferente -->
+        <title>{% block title %}{% endblock %}</title>
+        <!-- Podemos apuntar a directorios mediante jinja2 -->
+        <link rel="shortcut icon" href="{{ url_for('static', filename='imgs/favicon.ico') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    </head>
+    <body>
+
+        <!-- Podemos definir archivos 'base' como un include de PHP -->
+        <!-- Con esto creamos un esquelo que llamamos desde otros archivos como index.html -->
+        <!-- Y el contenido de index.html ira en el sitio de block content -->
+        {% block content %}
+        {% endblock %}
+
+        <!-- Podemos acceder a los mensajes que nos lleguen a traves de flash() de la siguiente forma -->
+        <!-- Podemos dotar a los mensajes de una categoria y tomarla / NOTA: Si with_categories=False deberemos
+            eliminar del bucle for la palabra category ya que entonces no existira -->
+        <!-- Tambien PODEMOS FILTRAR que categorias deseamos tomar de mensajes flash con  get_flashed_messages(category_filter=["miCategoria"])
+            y deberemos eliminar del bucle for donde iteramos por mensaje de nuevo la categoria -->
+        {% with messages = get_flashed_messages(with_categories=True) %}
+        <!-- Comprobamos si existen mensajes -->
+        {% if messages %}
+        <ul>
+            <!-- SI hay mensajes iteramos sobre ellos y los vamos listando -->
+            {% for category, message in messages %}
+            <li class="{{category}}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+
+        
+    </body>
+</html>

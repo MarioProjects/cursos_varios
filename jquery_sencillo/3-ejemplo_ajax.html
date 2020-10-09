@@ -1,0 +1,71 @@
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Blank HTML5</title>
+        <!-- CSS only -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+        <!-- JS, Popper.js, and jQuery -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    </head>
+    <body>
+
+    <div class="container mt-3">
+        <div class="row">
+            <h1>Listado de Páginas</h1>
+        </div>
+        <div class="row mt-3" id="url_list">
+            <div class="content">
+                <a>www.google.es</a>
+                <a>www.trello.com</a>
+                <a>www.youtube.com</a>
+                <a>www.stackoverflow.com</a>
+                <a>www.yahoo.es</a>
+                <a>www.educative.io</a>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+    let endpoint = 'https://api.linkpreview.net'
+    let apiKey = 'a94ca8a821f262b913a4e6226dcca7d5'
+
+    $( ".content a" ).each(function( index, element ) {
+
+        $.ajax({
+            url: endpoint + "?key=" + apiKey + " &q=" + $( this ).text(),
+            contentType: "application/json",
+            dataType: 'json',
+            success: function(result){
+
+                // https://getbootstrap.com/docs/4.5/components/card/
+                $( "#url_list" ).append(
+                    '<div class="col-4">' +
+                        '<div class="card" style="width: 18rem;">' +
+                          '<img src="' + result.image + '" class="card-img-top" alt="...">' +
+                          '<div class="card-body">' +
+                            '<h5 class="card-title">' + result.title +'</h5>' +
+                            '<p class="card-text">' + result.description +'</p>' +
+                            '<a href="' + result.url + '" class="btn btn-primary">' + result.url + '</a>' +
+                          '</div>' +
+                        '</div>' +
+                    '</div>');
+
+                $( element ).remove();
+
+            }
+        })
+
+    });
+});
+</script>
+    </body>
+</html>

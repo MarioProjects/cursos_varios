@@ -1,0 +1,18 @@
+<!-- Con este extend hacemos que el contenido de este html vaya donde este definida la secuencia -->
+<!-- block nombreEspecificado en el archivo referido (en este caso base.html) -->
+{% extends "base.html" %}
+
+<!-- Definimos el conteido de block title que es extendido de base.html -->
+{% block title %} Indice {% endblock %}
+
+<!-- Definimos el conteido de block content que es extendido de base.html -->
+{% block content %}
+
+    <!-- Podemos acceder a las variables que nos llegan de python con {{ variableName }} -->
+    <h1>{{ titulo }}</h1>
+    <p>Puedes ir a <a href="/insert/default">/insert/default</a> para insertar un nuevo registro en la DB</p>
+    <p>Puedes ir a <a href="/select/default">/select/default</a> para consultar un registro de la DB</p>
+    <p>Puedes ir a <a href="/update/default">/update/default</a> para actualizar un registro de la DB</p>
+    <p>Puedes ir a <a href="/remove/default">/remove/default</a> para eliminar un registro de la DB</p>
+
+{% endblock %}

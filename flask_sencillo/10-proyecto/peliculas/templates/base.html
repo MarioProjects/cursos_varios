@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <!-- Creamos un bloque que rellene quien extienda de nostros para que pueda poner cada vez un titulo diferente -->
+        <title>{% block title %}{% endblock %}</title>
+        <!-- Podemos apuntar a directorios mediante jinja2 -->
+        <link rel="shortcut icon" href="{{ url_for('static', filename='imgs/favicon.ico') }}">
+        <!-- JS, Popper.js, and jQuery -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    </head>
+    <body>
+
+        <!-- Podemos definir archivos 'base' como un include de PHP -->
+        <!-- Con esto creamos un esquelo que llamamos desde otros archivos como index.html -->
+        <!-- Y el contenido de index.html ira en el sitio de block content -->
+        {% block content %}
+        {% endblock %}
+
+        <!-- Podemos acceder a los mensajes que nos lleguen a traves de flash() de la siguiente forma -->
+        <!-- Podemos dotar a los mensajes de una categoria y tomarla / NOTA: Si with_categories=False deberemos
+            eliminar del bucle for la palabra category ya que entonces no existira -->
+        <!-- Tambien PODEMOS FILTRAR que categorias deseamos tomar de mensajes flash con  get_flashed_messages(category_filter=["miCategoria"])
+            y deberemos eliminar del bucle for donde iteramos por mensaje de nuevo la categoria -->
+        {% with messages = get_flashed_messages(with_categories=True) %}
+        <!-- Comprobamos si existen mensajes -->
+        {% if messages %}
+        <ul>
+            <!-- SI hay mensajes iteramos sobre ellos y los vamos listando -->
+            {% for category, message in messages %}
+            <li class="{{category}}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    </body>
+</html>
