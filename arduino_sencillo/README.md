@@ -32,9 +32,9 @@ Además, las placas Arduino también cuentan con otro tipo de componentes llamad
 
 La enorme flexibilidad y el carácter libre y abierto de Arduino hacen que puedas utilizar este tipo de placas prácticamente para cualquier cosa, desde relojes hasta básculas conectadas, pasando por robots, persianas controladas por voz o tu propia vending machine . En [este artículo](https://www.xataka.com/makers/46-proyectos-makers-para-hacer-verano-arduino-raspberry-pi) tienes varias decenas de ejemplos.
 
-### Freaduino
+### ELEGOO MEGA2560
 
-![LED](imgs/freaduino.jpg)
+![LED](imgs/placa.jpg)
 
 ## 2. Entorno de programación y configuración
 
@@ -45,7 +45,7 @@ El lenguaje de programación de Arduino está basado en C++ y aunque la referenc
 
 Debemos acceder a la página de de descarga de Software para la instalación de [Arduino](https://www.arduino.cc/en/Main/Software). Desde aquí decargaremos la versión que sea adecuada para nuestro sistema operativo.
 
-Una vez instalado, en nuestro programa y con la placa conectada verificaremos que en el apartado de Herramientas/Tools, la placa/board seleccionada es "Arduino Uno" y el puerto/port es el correcto.
+Una vez instalado, en nuestro programa y con la placa conectada verificaremos que en el apartado de Herramientas/Tools, la placa/board seleccionada es "Arduino Mega or Mega 2560" y el puerto/port es el correcto.
 
 #### Posibles problemas
 
@@ -275,34 +275,27 @@ Dentro del IDE de Arduino podemos abrir el monitor Serial desde Herramientas/Too
 
 ## 3. Sensores digitales. Entradas y salidas digitales.
 
-### Piraña LED (salida)
+### Conectar LED de color (salida)
 
-Podemos encontrarlo [aquí](https://www.elecfreaks.com/octopus-piranha-led-brick-obpiranha-green.html). Se trata de un modulo LED que nos permite emitir luz.
+Se trata de un modulo LED que nos permite emitir luz.
 
-![LED](imgs/piranha_led.jpg)
+![LED](imgs/led_connection.png)
 
-Los LEDs son dispositivos de salida a los que deberemos asignarles un valor, encendido (HIGH) o apagado (LOW), esto lo haremos mediante la función [`digitalWrite(pin, mode)`](https://www.arduino.cc/reference/en/language/functions/digital-io/digitalwrite/). Podemos encontrar un ejemplo de funcionamiento [aquí](programas/basico/piranha_led/piranha_led.ino).
-
-### Boton (entrada)
-
-Podemos encontrarlo [aquí](https://www.elecfreaks.com/octopus-digital-pushbutton-brick-obpushbutton-blue.html). Un boton nos sirve como desencadenante de acciones. Para trabajar con estos utilizaremos las funciones [`digitalRead`](https://www.arduino.cc/reference/en/language/functions/digital-io/digitalread/) que nos permite leer el valor de entrada de un pin especifico y asi comprobaremos si el estado de dicho pin es `HIGH`o `LOW`, es decir, si esta presionado o no, respectivamente.
-
-![boton](imgs/boton.jpg)
-
-Un [ejemplo](https://create.arduino.cc/projecthub/muhammad-aqib/arduino-button-tutorial-using-arduino-digitalread-function-08adb5) donde detectamos la pulsación del boton podemos encontrarlo [aquí](programas/basico/boton/boton.ino).
+Los LEDs son dispositivos de salida a los que deberemos asignarles un valor, encendido (HIGH) o apagado (LOW), esto lo haremos mediante la función [`digitalWrite(pin, mode)`](https://www.arduino.cc/reference/en/language/functions/digital-io/digitalwrite/). Para no quemarlos necesitaremos utilizar una resistencia de 330 ohm. Podemos encontrar un ejemplo de funcionamiento [aquí](programas/blink_led/blink_led.ino).
 
 
-### Zumbador pasivo (salida)
+### Conectar LED RGB (salida)
 
-Podemos encontrarlo [aquí](https://www.elecfreaks.com/octopus-passive-buzzer-brick-obpb01.html). El zumbador podemos encontrarlo en sistemas de alarmas, ordenadores, temporizadores y otros dispositivos. Para trabajar con estos utilizaremos las funciones [`tone()`](https://www.arduino.cc/reference/en/language/functions/advanced-io/tone/) y [`noTone()`](https://www.arduino.cc/reference/en/language/functions/advanced-io/notone/) que nos permitiran reproducir sonido y pararlo, respectivamente.
+Se trata de un modulo LED RGB que nos permite emitir una luz del tono deseado.
 
-![zumbador pasivo](imgs/passive_buzzer.jpg)
+![LED RGB](imgs/led_rgb_connection.png)
 
-Un [ejemplo](https://create.arduino.cc/projecthub/SURYATEJA/use-a-buzzer-module-piezo-speaker-using-arduino-uno-89df45) sencillo en el que reproducimos sonido en un zumbador conectado en el pin 9 de nuestra placa podemos encontrarlo [aqui](programas/basico/zumbador_pasivo/zumbador_pasivo.ino).
+Los LEDs RGB son dispositivos de salida a los que deberemos asignarles un valor entre 0 y 255, sigueindo la escala RGB, esto lo haremos mediante la función [`analogWrite(pin, value)`](https://www.arduino.cc/reference/en/language/functions/analog-io/analogwrite/). Para no quemarlos necesitaremos utilizar una resistencia de 220 ohm (rojo-rojo-marrón) y dos de 100 ohm (marrón-negro-marrón). Podemos encontrar un ejemplo de funcionamiento [aquí](programas/rgb_led/rgb_led.ino).
+
 
 ### HC-SR04 (salida)
 
-Podemos encontrarlo [aquí](https://tienda.bricogeek.com/sensores-distancia/741-sensor-de-distancia-por-ultrasonidos-hc-sr04.html).Dentro del mundo Arduino, el emisor/receptor de ultrasonidos HC-SR04 es quizás uno de los complementos más reconocibles. Este sensor se emplea en todo tipo de proyectos, siendo su principal uso el de reconocer obstáculos, aunque debido su buena resolución, también se emplea para medir la distancias a objetos.
+Dentro del mundo Arduino, el emisor/receptor de ultrasonidos HC-SR04 es quizás uno de los complementos más reconocibles. Este sensor se emplea en todo tipo de proyectos, siendo su principal uso el de reconocer obstáculos, aunque debido su buena resolución, también se emplea para medir la distancias a objetos.
 
 ![HC-SR04](imgs/hc-sr04.jpg)
 
@@ -310,27 +303,185 @@ Podemos encontrarlo [aquí](https://tienda.bricogeek.com/sensores-distancia/741-
 
 Para aclarar un poco el factor de multiplicación que vamos a introducir en Arduino, basta con decir que la velocidad es igual al espacio dividido por el tiempo que se tarda en recorrer dicho espacio. La velocidad del sonido es conocida (343m/s) y el tiempo lo vamos a determinar, como el tiempo que transcurre desde que efectuamos el disparo hasta que recibimos el eco.
 
-[Aquí](programas/basico/hc_sr04/hc_sr04.ino) tenemos un ejemplo de uso de este sensor para medir distancias.
+[Aquí](programas/hc_sr04/hc_sr04.ino) tenemos un ejemplo de uso de este sensor para medir distancias.
 
-## 4. Sensores analógicos. Entradas y salidas analógicas.
+### Digito de 7 Segmentos (salida)
 
-### Fotocelula (entrada)
+Las pantallas de 7 segmentos consisten en siete leds, llamados segmentos, dispuestos en forma de '8', donde algunas pantallas disponen de un segmento extra para representar un punto.
 
-Podemos encontrarla [aquí](https://www.elecfreaks.com/octopus-analog-photocell-brick-obphotocell.html). Las fotocelulas son sensores que nos permiten detectar luz. Son pequeñas, baratas, y se pueden utilizar de forma sencilla. Básicamente son un resistor que cambiasn su valor resistivo dependiendo de cuanta luz reciben.
+![7 Segmentos](imgs/single_digit_7segment.png)
 
-![fotocelula](imgs/analog_photocell.jpg)
+[Aquí](programas/7segmentos/7segmentos.ino) tenemos un ejemplo de uso de este sensor mostrando números del 0 al 5 mediante el uso de una libreria para escibir de forma fácil. **Mini ejercicio**: Hacer que vaya del 0 al 9 de forma que no tengamos que repetir todo el rato las instrucciones. [Más información](https://www.circuitbasics.com/arduino-7-segment-display-tutorial/).
 
-Un [ejemplo](https://create.arduino.cc/projecthub/55546/innovation-lab-7-photocell-led-on-off-3df0ab) sencillo en el que leeremos el valor de la fotocelula y lo imprimiremos en el monitor Serial podemos encontrarlo [aqui](programas/basico/fotocelula/fotocelula.ino). Recordad que los valores de la fotocelula que leeremos son análogicos y por ello además deberemos conectarlos a los puertos analogicos (los que empiezan por A).
+
+### Pantalla LCD 16 char 2 line (salida)
+
+Para utilizar la pantalla led necesitaremos realizar las siguientes conexiones:
+
+![7 Segmentos](imgs/lcd1602.jpg)
+
+Utilizaremos una libreria para facilitar la escritura en la pantalla. Podemos encontrar un ejemplo de funcionamiento [aquí](programas/lcd1602/lcd1602.ino).
+
+
+### Sensor de sonido (entrada)
+
+Para utilizar el senso de sonido necesitaremos realizar las siguientes conexiones:
+
+| Arduino |      Sound Module     |
+|:-------:|:---------------------:|
+|    3    | D0 ( Digital output ) |
+|    5V   |           +           |
+|   GND   |           G           |
+|    A0   |           AO          |
+
+**AJUSTANDO EL LÍMITE DE DISPARO**:Esta es seguramente la parte más complicada de esta sesión. Para ajustar el límite de disparo lo que hacemos es girar el potenciómetro con un destornillador. Tenemos que dejarlo de tal forma que el LED que marca si está accionada la salida digital esté apagado, pero lo más próximo posible al límite en el que se enciende.
+
+ 
+Si lo ajustamos mal y el LED se está encendido, no detectaremos ningún cambio y no podremos reaccionar a ningún estímulo sonoro.
+Si lo ajustamos de forma que esté apagado pero demasiado lejos del límite en el que se enciende, habrá que llamar al increíble Hulk para que dé una palmada por nosotros. 
+
+Podemos encontrar un ejemplo de funcionamiento [aquí](programas/sound_sensor/sound_sensor.ino).
+
 
 ### Servo Motor (especial)
 
-Podemos encontrarlo [aquí](https://mkelectronica.com/producto/mini-servo-motor-emax-es08a/). Un servomotor es un dispositivo similar a un motor de corriente continua que tiene la capacidad de ubicarse en cualquier posición dentro de su rango de operación, y mantenerse estable en dicha posición.
+Un servomotor es un dispositivo similar a un motor de corriente continua que tiene la capacidad de ubicarse en cualquier posición dentro de su rango de operación, y mantenerse estable en dicha posición.
 
-![servo](imgs/servo.jpg)
+![Servo](imgs/servo.png)
 
-Podemos comprobar cuidadosamente de forma manual cual es el rango de movimiento del servo. En este caso son 120 grados. Finalmente, podemos ver un ejemplo de uso donde recorremos todo el rango de movimiento del servo [aquí](programas/basico/servo/servo.ino).
+Podemos comprobar cuidadosamente de forma manual cual es el rango de movimiento del servo. En este caso son 180 grados. Finalmente, podemos ver un ejemplo de uso donde recorremos todo el rango de movimiento del servo [aquí](programas/servo/servo.ino).
 
-## 5. Comunicaciones electrónica-sensores. Comunicación serie, bluetooth
+**Mini ejercicio**: Calibrar el aspa del servo para conocer exactamente su posición. ¿Porqué se mueve masrápido en un sentido que en el otro?
 
-## 6. Comunicación electrónica-sensores. Comunicación wifi ESP8266.
-https://www.luisllamas.es/arduino-wifi-esp8266-esp01/
+
+### DS1307 - Fecha (especial)
+
+Este modulo nos permite conocer la fecha en la que estamos durante la ejecución de nuestro programa, para por ejemplo, encende un led a una determinada hora, un determinado dia, etc. Para utilizarlo de forma sencilla utilizaremos una [libreria](https://github.com/adafruit/RTClib/). Las conexiones son las siguientes:
+
+| Arduino  |      DS1307 Module    |
+|:--------:|:---------------------:|
+| SCL (21) |           SCL         |
+|    5V    |           VCC         |
+|   GND    |           GND         |
+| SDA (20) |           SDA         |
+
+
+Ejemplo [aquí](programas/ds1307_tiempo/ds1307_tiempo.ino).
+
+### RFID-RC522 (especial)
+
+Los lectores RFID(Radio Frequency IDentification) en la actualidad están teniendo bastante acogida en los sistemas de identificación, su uso abarca desde sistemas de seguridad, acceso de personal, identificación y logística de productos, como llaves de puertas eléctricas, entre otras aplicaciones.
+
+Su principio de funcionamiento consiste en pasar un TAG, cerca de un lector RFID, el TAG tiene la capacidad de enviar información al lector.
+
+| Arduino  |   RFID-RC522 Module   |
+|:--------:|:---------------------:|
+|    53    |           SDA (SS)    |
+|    53    |           SCK         |
+|    51    |           MOSI        |
+|    50    |           MISO        |
+|    NO    |           IRQ         |
+|    GND   |           GND         |
+|    9     |           RST         |
+|    3.3V  |           3.3V        |
+
+Los TAGs viene en diferentes modelos, los más comunes son en tarjetas y en llaveros, pero también vienen como etiquetas adhesivas e incluso ya viene incrustados en algunos productos. Los Tags tienen internamente una antena y un microchip, encargado de realizar todo el proceso de comunicación, la energía lo obtiene de la señal de radiofrecuencia, que si bien la energía en la señal es pequeña, es suficiente para hacer trabajar el microchip, esto es la razón por la que es necesario acercarlos a una pequeña distancia generalmente menor a 10 cm. Pero existen Tags activos, que incorporan baterías, estos tiene alcance de varios metros de distancia.
+
+Para trabajar con el modulo es necesario utiliza una [librería](https://github.com/miguelbalboa/rfid). Importamos la librería a nuestro IDE de Arduino: Programa/Incluir Libreria/Añadir biblioteca .ZIP, con esto estamos listos para programar. Ejemplo [aquí](programas/rfid_rc522/rfid_rc522.ino).
+
+
+### Zumbador Activo (salida)
+
+Un zumbador activo generará sonido mediante un oscilador interno, por lo que únicamente necesitamos corriente continua.
+
+![Zumbador Activo](imgs/zumbador_activo.jpg)
+
+Ejemplo [aquí](programas/zumbador_activo/zumbador_activo.ino).
+
+
+### Zumbador Pasivo (salida)
+
+Un zumbador pasivo generará sonido mediante corriente alterna. El zumbador podemos encontrarlo en sistemas de alarmas, ordenadores, temporizadores y otros dispositivos. Para trabajar con estos utilizaremos las funciones [`tone()`](https://www.arduino.cc/reference/en/language/functions/advanced-io/tone/) y [`noTone()`](https://www.arduino.cc/reference/en/language/functions/advanced-io/notone/) que nos permitiran reproducir sonido y pararlo, respectivamente.
+
+![Zumbador Passivo](imgs/zumbador_pasivo.jpg)
+
+Ejemplo [aquí](programas/zumbador_pasivo/zumbador_pasivo.ino).
+
+
+
+### Membrana switches (entrada)
+
+Una membrana nos permite cierta interacción con el usuario a través de una interfaz amigable.
+
+![Zumbador Activo](imgs/membrana.png)
+
+
+| Arduino  |     Membrana Module   |
+|:--------:|:---------------------:|
+|    5     |           8           |
+|    4     |           7           |
+|    3     |           6           |
+|    2     |           5           |
+|    9     |           4           |
+|    8     |           3           |
+|    7     |           2           |
+|    6     |           1           |
+
+Necesitamos descargar de la biblioteca la libreria de Keypad de Mark Stanley: Programa/Incluir Libreria/Administrar bibliotecas. Ejemplo [aquí](programas/membrana_switch/membrana_switch.ino).
+
+
+
+### Boton (entrada)
+
+Un boton nos sirve como desencadenante de acciones. Para trabajar con estos utilizaremos las funciones [`digitalRead`](https://www.arduino.cc/reference/en/language/functions/digital-io/digitalread/) que nos permite leer el valor de entrada de un pin especifico y asi comprobaremos si el estado de dicho pin es `HIGH`o `LOW`, es decir, si esta presionado o no, respectivamente.
+
+![boton](imgs/boton.png)
+
+Un ejemplo donde detectamos la pulsación del boton podemos encontrarlo [aquí](programas/boton/boton.ino).
+
+
+
+### Joystick (entrada)
+
+A tavés del hoystick podemos hacer que el usuario controle dispositivos indicando direcciones.
+
+![Joystick](imgs/joystick.png)
+
+Un ejemplo donde detectamos la dirección del joystick podemos encontrarlo [aquí](programas/joystick/joystick.ino).
+
+
+### Potenciómetro (entrada)
+
+Son resistencias variables que pueden modificar su valore a través de un diál o rueda. Con ellos podemos, por ejemplo ajusta,r la intensidad de un led o lo que necesitemos.
+
+![Potenciómetro](imgs/potentiometer.png)
+
+Un ejemplo donde utilizamos uno y con él ajustamos la intensidad de un led podemos encontrarlo [aquí](programas/potentiometer/potentiometer.ino).
+
+
+
+### Sensor nivel de agua (entrada)
+
+Podemos detectar el nivel de agua que tenemos en un recipiente mediante el siguiente modulo. Nos permite asi, por ejmeplo, medir el nivel de lluvia.
+
+![Agua](imgs/water.png)
+
+
+Es importante calibrarlo llenando un recipiente y tomando medidas cuando este está vacio, a mitad y lleno, para asi poder establecer umbrales y saber como es de conductor nuestro liquido. Ejemplo de codigo  [aquí](programas/agua/agua.ino).
+
+
+
+
+
+## 4. Sensores analógicos. Entradas y salidas analógicas.
+
+
+
+
+
+
+## Ideas Mini Proyectos
+
+  - Medir la temperatura y humedad y mostrarla en pantalla (LCD1602)
+  - Enchufar un led al chasquear los dedos y apagarlo al volverlos a chasquear
+  - Con un potenciometro y un zumbador pasivo ir variando el tono del zumbador.
