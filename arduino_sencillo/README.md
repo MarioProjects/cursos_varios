@@ -273,9 +273,9 @@ Para hacer uso de esta comunicación es necesario definir un velocidad de bits p
 
 Dentro del IDE de Arduino podemos abrir el monitor Serial desde Herramientas/Tools > Serial Monitor (Ctrl+Shift+M).
 
-## 3. Sensores digitales. Entradas y salidas digitales.
+## 3. Sensores. Entradas, salidas y más.
 
-### Conectar LED de color (salida)
+### LED de color (salida)
 
 Se trata de un modulo LED que nos permite emitir luz.
 
@@ -284,7 +284,7 @@ Se trata de un modulo LED que nos permite emitir luz.
 Los LEDs son dispositivos de salida a los que deberemos asignarles un valor, encendido (HIGH) o apagado (LOW), esto lo haremos mediante la función [`digitalWrite(pin, mode)`](https://www.arduino.cc/reference/en/language/functions/digital-io/digitalwrite/). Para no quemarlos necesitaremos utilizar una resistencia de 330 ohm. Podemos encontrar un ejemplo de funcionamiento [aquí](programas/blink_led/blink_led.ino).
 
 
-### Conectar LED RGB (salida)
+### LED RGB (salida)
 
 Se trata de un modulo LED RGB que nos permite emitir una luz del tono deseado.
 
@@ -471,11 +471,57 @@ Es importante calibrarlo llenando un recipiente y tomando medidas cuando este es
 
 
 
+### Sensor movimiento HC-SR501 (entrada)
+
+Podemos detectar el si existe movimiento, por ejemplo en una sala, mediante el sensor HC-SR501. Tiene un rango de hasta 7 metos y puede/debe calibrarse.
+
+![Calibrar HCSR501](imgs/hcsr501.jpg)
+
+Podemos ajusta el rango moviendo el potenciometro de la izquierda. Si lo movemos en el sentido de las agujas del reloj llegamos hata 7 metros. En el sentido antiorario disminuimos hasta un minimo de 3 metros.
+
+El potenciometro derecho puede usarse para ajustar el tiempo po el que la salida esta como HIGH despues de detectar movimiento. Como minimo hay un retraso de 3 segundos y como mucho de 300 segundos (5 minutos). En el sentido de las agujas del reloj se incrementa y en el contario se decrementa.
+
+![HCSR501](imgs/hcsr501_esquema.jpg)
+
+https://www.makerguides.com/hc-sr501-arduino-tutorial/
+Ejemplo de codigo  [aquí](programas/hcsr501/hcsr501.ino).
 
 
-## 4. Sensores analógicos. Entradas y salidas analógicas.
+
+### Motor paso a paso (especial)
+
+Un motor paso a paso es un dispositivo electromecánico que convierte pulsos eléctricos en movimientos mecánicos discretos. El eje de un motor paso a paso gira en incrementos discretos cuando impulsos de mando eléctrico se aplican a él en la secuencia correcta.
+
+![HCSR501](imgs/stepper.jpg)
+La librería de pasos por defecto que viene pre-instalado con el Arduino IDE sólo admite el método de paso completo y ha limitado características. El nº de pasos por vuelta es 2048. Ejemplo de codigo [aquí](programas/stepper/stepper.ino).
 
 
+### IR Remoto (especial)
+
+La radiación infraroja es un tipo de luz cuya fecuencia esta fuera de la vista de los humanos. Podemos emitir y recibir distintos tipos y recibirla en nuestro Arduino con el modulo adecuado.
+
+![IR](imgs/ireceiver.png)
+
+Vamos a utilizar la libreria IRemote para captar de forma sencilla las señales, necesitaremos añadirla como .ZIP desde Progama > Incluir Libreria. Ejemplo de codigo [aquí](programas/ir/ir.ino).
+
+
+### Max 7219 Matriz Led (salida)
+
+Contamos con dispositivos como matrices de leds para mandar mensajes también.
+![IR](imgs/max7219.png)
+
+Vamos a utilizar la libreria LedControl para captar de forma sencilla las señales, necesitaremos añadirla como .ZIP desde Progama > Incluir Libreria. Ejemplo de codigo [aquí](programas/max7219/max7219.ino).
+
+
+
+### Codificador Rotatorio (salida)
+
+Estos Encoders son cada vez más populares porque son bastante fácil usar y nos dan bastantes ventajas con relación a otros componentes como los potenciometros. Un Rotary Encoder es un dispositivo electro mecánico que convierte el movimiento de giro de un eje en una señal y genera una señal proporcional al giro de dicho eje. Se parece mucho a un potenciómetro, pero a diferencia de este, puede girar indefinidamente tanto en sentido del reloj como al contrario.
+
+
+![IR](imgs/rotatory_encoder.png)
+
+Ejemplo de codigo [aquí](programas/codificador_rotatorio/codificador_rotatorio.ino).
 
 
 
