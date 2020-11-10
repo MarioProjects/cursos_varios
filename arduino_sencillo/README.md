@@ -305,6 +305,23 @@ Para aclarar un poco el factor de multiplicación que vamos a introducir en Ardu
 
 [Aquí](programas/hc_sr04/hc_sr04.ino) tenemos un ejemplo de uso de este sensor para medir distancias.
 
+### Sensor de luz
+
+El photoresistor es un componente electronico cuya resistividad varia en funcion de la luz recibida.
+
+![Photoresistor](imgs/photores.jpg)
+
+Necesitaremos una resistencia de 10k. Ejemplo de codigo [aquí](programas/photoresistor/photoresistor.ino).
+
+
+### Sensor de calor
+
+El termistor es un componente electronico cuya resistividad varia en funcion del calor recibido.
+
+![termistor](imgs/termistor.png)
+
+Necesitaremos una resistencia de 10k. Ejemplo de codigo [aquí](programas/photoresistor/photoresistor.ino).
+
 ### Digito de 7 Segmentos (salida)
 
 Las pantallas de 7 segmentos consisten en siete leds, llamados segmentos, dispuestos en forma de '8', donde algunas pantallas disponen de un segmento extra para representar un punto.
@@ -523,6 +540,16 @@ Estos Encoders son cada vez más populares porque son bastante fácil usar y nos
 
 Ejemplo de codigo [aquí](programas/codificador_rotatorio/codificador_rotatorio.ino).
 
+
+### Sensor de inclinación
+
+Los sensores de inclinación se llaman en la lengua de Shakespeare (y Trump) tilt switches. Tilt switch en singular. En ingles Tilt es inclinar o ladear y se refiere a inclinar el plano de referencia sobre el que se asienta nuestro sistema de coordenadas. Son sensores de unos pocos milímetros de longitud, que llevan en su interior una o dos pequeñas bolas conductoras, capaces de cerrar el circuito con los pines  metálicos inferiores del cilindro. Cuando hacen contacto permiten el paso de la corriente y cierran el contacto exactamente igual que si fueran un interruptor (Y de hecho se manejan igual)  pero que a partir de un cierto Angulo de inclinación dejan de hacer contacto y abren el contacto.
+
+![TILT EXPLAIN](imgs/tilt_explain.jpg)
+![TILT](imgs/tilt.png)
+
+
+Ejemplo de codigo [aquí](programas/tilt/tilt.ino).
 
 
 
