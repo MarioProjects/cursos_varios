@@ -281,7 +281,7 @@ Se trata de un modulo LED que nos permite emitir luz.
 
 ![LED](imgs/led_connection.png)
 
-Los LEDs son dispositivos de salida a los que deberemos asignarles un valor, encendido (HIGH) o apagado (LOW), esto lo haremos mediante la función [`digitalWrite(pin, mode)`](https://www.arduino.cc/reference/en/language/functions/digital-io/digitalwrite/). Para no quemarlos necesitaremos utilizar una resistencia de 330 ohm. Podemos encontrar un ejemplo de funcionamiento [aquí](programas/blink_led/blink_led.ino).
+Los LEDs son dispositivos de salida a los que deberemos asignarles un valor, encendido (HIGH) o apagado (LOW), esto lo haremos mediante la función [`digitalWrite(pin, mode)`](https://www.arduino.cc/reference/en/language/functions/digital-io/digitalwrite/). Para no quemarlos necesitaremos utilizar una resistencia de 330 ohm. Podemos encontrar un ejemplo de funcionamiento [aquí](programas/led_blink/led_blink.ino).
 
 
 ### LED RGB (salida)
