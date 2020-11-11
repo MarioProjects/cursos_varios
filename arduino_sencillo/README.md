@@ -320,7 +320,7 @@ El termistor es un componente electronico cuya resistividad varia en funcion del
 
 ![termistor](imgs/termistor.png)
 
-Necesitaremos una resistencia de 10k. Ejemplo de codigo [aquí](programas/photoresistor/photoresistor.ino).
+Necesitaremos una resistencia de 10k. Ejemplo de codigo [aquí](programas/thermistor/thermistor.ino).
 
 ### Digito de 7 Segmentos (salida)
 
