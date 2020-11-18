@@ -394,7 +394,7 @@ Su principio de funcionamiento consiste en pasar un TAG, cerca de un lector RFID
 | Arduino  |   RFID-RC522 Module   |
 |:--------:|:---------------------:|
 |    53    |           SDA (SS)    |
-|    53    |           SCK         |
+|    52    |           SCK         |
 |    51    |           MOSI        |
 |    50    |           MISO        |
 |    NO    |           IRQ         |
