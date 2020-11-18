@@ -454,7 +454,7 @@ Un boton nos sirve como desencadenante de acciones. Para trabajar con estos util
 
 ![boton](imgs/boton.png)
 
-Un ejemplo donde detectamos la pulsación del boton podemos encontrarlo [aquí](programas/boton/boton.ino).
+Resistencia 10k. Un ejemplo donde detectamos la pulsación del boton podemos encontrarlo [aquí](programas/boton/boton.ino).
 
 
 
